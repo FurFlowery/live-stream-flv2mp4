@@ -5,6 +5,9 @@
 由于Github限制单文件100M，无法上传ffmpeg.exe，请自行前往ffmpeg官网下载，放置在bat同目录下
 或到  https://github.com/yunlancn/live-stream-flv2mp4/releases  下载zip压缩版完整包
 
+## 目前测试通过的平台
+哔哩哔哩录播姬  
+
 ## 使用方法
 直接将需要转封装的flv视频文件拖到bat上即可  
 内置：ffmpeg版本：4.4  
