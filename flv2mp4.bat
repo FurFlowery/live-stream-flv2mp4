@@ -1,76 +1,77 @@
 @echo off
-@title ffmpeg flv����ת��װmp4�ű� By ����Official
+@title ffmpeg flv批量转封装mp4脚本 By 花黎Official
 
-:: �ű���д By ����Official
-:: �ű�����������Դ����
-:: �ű��汾V1.2
+:: 脚本编写 By 花黎Official
+:: 脚本部分资料来源网络
+:: 脚本版本V1.3
 
-:: ��������
-:: �̶��ű�����Ŀ¼����
+:: 基础变量
+:: 固定脚本运行目录变量
 set rundir=%~dp0
 
-:: ��ʼǰ����
-echo ��ӭʹ��flv����ת��װmp4�ű� By ����Official
-echo ���ű�ֱ�ӽ�flvת��װΪmp4��ִ���ٶ�ȡ����Ӳ���ٶȶ���CPU
+:: 开始前提醒
+echo 欢迎使用flv批量转封装mp4脚本 By 花黎Official
+echo 本脚本直接将flv转封装为mp4，执行速度取决于硬盘速度而非CPU
 echo=
-echo ʹ�÷�����ֱ�ӽ�����Ҫת��װ���ļ����뱾bat�ű�����
+echo 使用方法：直接将现需要转封装的文件拖入本bat脚本即可
+echo 注意：建议不要使用Administrator账户运行
 echo=
-echo ����һ��ǰ��ȷ�������ļ��Ƿ���ȷ���Լ�batĿ¼���Ƿ���ffmpeg.exe
-echo ������ܵ���ִ��ʧ��
+echo 在下一步前请确认输入文件是否正确，以及bat目录下是否有ffmpeg.exe
+echo 否则可能导致执行失败
 echo=
-echo ��ǰ�ű��汾��V1.2
+echo 当前脚本版本：V1.3
 echo=
-echo ���������ļ�:
+echo 本次输入文件:
 
-:: ȷ�������ļ�
+:: 确定输入文件
 set str=%*
 set "str=%str:"="%"
 set "str= %str%"
 call set "str=%%str: %~d1=" "%~d1%%"
 
-:: �г������ļ��б�
+:: 列出输入文件列表
 for %%i in ("%str%") do echo %%i
 echo=
 
-:: ִ��ǰȷ��
-echo ȷ��������������ʼת��װ��������ֱ�ӹرձ�����
+:: 执行前确认
+echo 确认无误后按任意键开始转封装，否则请直接关闭本窗口
 echo=
 pause
 
-:: �ж������ļ��Ƿ�Ϊ�գ���������ű�
-if "%1"=="" goto:error
+:: 判断输入文件是否为空，否则结束脚本
+if "%1"=="" goto:nonefile
 
-:: �ж�ffmpeg.exe�Ƿ���ڣ���������ű�
+:: 判断ffmpeg.exe是否存在，否则结束脚本
 if exist %rundir%\ffmpeg.exe (
      goto:start
 )  else (
-     echo ����ffmpeg.exe�����ڣ�������ffmpeg.exe�����ڽű�ͬĿ¼�£�ȷ���ļ���Ϊ"ffmpeg.exe"
+     echo 错误：ffmpeg.exe不存在，请下载ffmpeg.exe放置在脚本同目录下，确保文件名为"ffmpeg.exe"
 	 goto:end
 )
 
-:: ѭ��ִ��ת��װ����
+:: 循环执行转封装命令
 :start
 
-:: ת��װ
+:: 转封装
 %rundir%\ffmpeg.exe -i %~1 -vcodec copy -acodec copy %~1.mp4
 shift
 if not "%1"=="" goto:start
 
-:: �������
+:: 完成提醒
 echo=
-echo �����ļ�ת��װ���
-echo �ļ��ѱ����������ļ�ͬĿ¼��
+echo 所有文件转封装完成
+echo 文件已保存在输入文件同目录下
 echo=
-echo ����ʧ������Դ�ļ��Ƿ������Լ�Ŀ¼��ffmpeg.exe�Ƿ��ִ��
+echo 如有失败请检查源文件是否正常以及目录下ffmpeg.exe是否可执行
 goto:end
 
-:: �����������ļ�
-:error
+:: 错误：无输入文件
+:nonefile
 echo=
-echo ����û�������ļ�
-echo �뽫��Ҫת��װ��flv�ļ�ֱ���ϵ�bat�ű���ִ�У�����ֱ��ִ�нű�
+echo 错误：没有输入文件
+echo 请将需要转封装的flv文件直接拖到bat脚本上执行，切勿直接执行脚本
 
-:: ִ�����
+:: 执行完成
 :end
 echo=
 pause
