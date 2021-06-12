@@ -1,7 +1,7 @@
 @echo off
 @title ffmpeg flv批量转封装mp4脚本 By 花黎Official
 
-:: 脚本编写 By 花黎Official
+:: 脚本编写 By 花黎Flowery
 :: 脚本部分资料来源网络
 :: 脚本版本V1.3
 
@@ -14,7 +14,7 @@ echo 欢迎使用flv批量转封装mp4脚本 By 花黎Official
 echo 本脚本直接将flv转封装为mp4，执行速度取决于硬盘速度而非CPU
 echo=
 echo 使用方法：直接将现需要转封装的文件拖入本bat脚本即可
-echo 注意：建议不要使用Administrator账户运行
+echo "注意：建议不要使用Administrator账户运行，文件名不可包含&"
 echo=
 echo 在下一步前请确认输入文件是否正确，以及bat目录下是否有ffmpeg.exe
 echo 否则可能导致执行失败
